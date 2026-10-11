@@ -1,277 +1,189 @@
-# 🚀 OPEN-TALK — Real-Time Communication Backend
+# Open-Talk 💬
 
-**A feature-rich backend for a real-time communication platform, inspired by modern community and messaging applications.**
+**Open-Talk** is a full-stack real-time communication platform designed to provide users with an interactive messaging experience. The project combines a modern frontend with a scalable backend to support communication, channel-based messaging, file attachments, and subscription-related functionality.
 
-OPEN-TALK is a Node.js-based communication platform backend designed to support real-time messaging, community servers, channels, file sharing, user authentication, membership management, and Nitro-style premium subscriptions.
+## 🚀 Project Overview
 
-The project focuses on modular backend architecture, RESTful APIs, real-time communication, database integration, and role-based access control.
+Open-Talk is built using modern JavaScript technologies and follows a client-server architecture.
+
+The frontend provides the user interface and communicates with the backend through APIs and real-time connections. The backend manages authentication, data storage, messaging operations, and other application services.
 
 ## ✨ Key Features
 
-### 💬 Real-Time Messaging
-- Send and retrieve messages within channels.
-- Real-time message delivery using Socket.IO.
-- Edit and delete messages with authorization checks.
-- Support for text, emoji, image, video, and file attachments.
-- Broadcast message events to connected channel members.
+- **Real-Time Communication:** Real-time messaging powered by Socket.IO.
+- **Channel-Based Messaging:** Organize conversations into channels.
+- **File Attachments:** Support for sending files and media through messages.
+- **REST API:** Backend APIs for application functionality.
+- **MongoDB Integration:** Persistent storage using MongoDB and Mongoose.
+- **Redis Integration:** Redis support for applicable caching or coordination tasks.
+- **Nitro Subscription Model:** Subscription-related functionality with status and expiration handling.
+- **Modern User Interface:** Interactive frontend built with React and Vite.
+- **Input Validation:** Request validation and error handling on the backend.
 
-### 🏠 Server & Channel Management
-- Community server and channel architecture.
-- Public and private channel access control.
-- Server membership verification.
-- Channel-based communication.
-- Permission-aware message operations.
+## 🛠️ Tech Stack
 
-### 🔐 Authentication & Authorization
-- Authentication middleware for protected API routes.
-- User-specific authorization checks.
-- Server membership and access validation.
-- Input validation using Express Validator.
-- Password hashing and secure authentication practices where configured.
+### Frontend
+- React.js
+- JavaScript
+- Vite
+- HTML5
+- CSS3
+- npm
+- REST API integration
+- Socket.IO Client, if enabled in the current frontend implementation
 
-### 📎 File & Media Uploads
-- Multipart file uploads using Multer.
-- Image and video attachment classification.
-- Integration with an external storage service for uploaded media.
-- Attachment URLs stored with messages.
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Socket.IO
+- Redis
+- Multer for multipart file uploads
+- Express Validator
+- Authentication middleware
+- External file storage service, as configured
 
-### 💎 Nitro Premium System
-OPEN-TALK includes a Nitro-style premium subscription model designed to manage premium user status.
+### Development Tools
+- Git and GitHub
+- npm
+- Visual Studio Code
+- Postman (for API testing)
 
-- User-linked Nitro subscription records.
-- Subscription status management, including active, expired, and cancelled states.
-- Subscription expiration checks.
-- Active subscription lookup using MongoDB aggregation.
-- Nitro status included in message author information where applicable.
-
-The Nitro model provides a foundation for premium features and subscription-aware user experiences.
-
-### ⚡ Real-Time Infrastructure
-- Socket.IO for bidirectional communication.
-- Redis integration for supporting backend infrastructure.
-- MongoDB for persistent application data.
-- Event-based updates for new, edited, and deleted messages.
-
-## 🛠️ Technology Stack
-
-| Technology | Purpose |
-|---|---|
-| JavaScript (ES Modules) | Backend programming |
-| Node.js | JavaScript runtime |
-| Express.js | REST API and middleware |
-| MongoDB | Database |
-| Mongoose | Data models and database operations |
-| Socket.IO | Real-time messaging |
-| Redis | Caching or real-time infrastructure, depending on configuration |
-| Multer | Multipart file uploads |
-| ImageKit / configured storage provider | Media storage integration |
-| Express Validator | Request validation |
-| Authentication middleware | Protected routes and access control |
-| Nodemon | Development server restart |
-
-**Additional integrations:** Email service, environment configuration, and API response/error utilities.
-
-*The exact storage provider, authentication implementation, and Redis usage should be confirmed against the current source code and configuration.*
-
-## 🏗️ Architecture Overview
-
-The backend follows a modular, controller-based architecture.
-
-```text
-Client Application
-       |
-       v
-Express REST API
-       |
-       v
-Authentication Middleware
-       |
-       v
-Request Validation
-       |
-       v
-Controllers
-       |
-       +------> MongoDB / Mongoose
-       |
-       +------> Media Storage
-       |
-       +------> Socket.IO Events
-       |
-       +------> Redis Infrastructure
-```
-
-### Core Backend Modules
-
-- **Routes:** Define API endpoints and middleware order.
-- **Controllers:** Implement messaging and application business logic.
-- **Models:** Represent users, messages, channels, servers, memberships, and Nitro subscriptions.
-- **Middleware:** Handle authentication, request validation, and file uploads.
-- **Services:** Encapsulate reusable integrations such as media storage and Socket.IO.
-- **Utilities:** Standardize API responses and application errors.
-
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```text
 OPEN-TALK/
-├── Server/
+├── Client/
+│   ├── public/
 │   ├── src/
-│   │   ├── controllers/
-│   │   ├── middleware/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   ├── validators/
-│   │   └── utils/
+│   ├── index.html
 │   ├── package.json
-│   └── .env
+│   ├── package-lock.json
+│   └── vite.config.js
+│
+├── Server/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── services/
+│   ├── utils/
+│   ├── package.json
+│   └── ...
+│
 ├── .gitignore
-├── package.json
-├── package-lock.json
 └── README.md
 ```
 
-*The structure above is a simplified overview. Adjust folder and file names to match the repository exactly.*
+*Note: The exact backend folder names may differ depending on the current project structure.*
 
 ## ⚙️ Getting Started
 
 ### Prerequisites
 
-Install the following before running the backend:
+Make sure you have installed:
 
 - Node.js and npm
-- MongoDB instance
-- Redis instance, if required by the current configuration
-- Credentials for configured media storage and email services
+- MongoDB or a MongoDB connection string
+- Redis, if required by the configured backend services
+- Git
 
 ### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/shiv930/OPEN-TALK.git
-cd OPEN-TALK/Server
+cd OPEN-TALK
 ```
 
-### 2. Install Dependencies
+### 2. Set Up the Backend
 
 ```bash
+cd Server
 npm install
 ```
 
-### 3. Configure Environment Variables
+Create a `.env` file in the backend directory and configure the environment variables required by your application.
 
-Create a `.env` file inside the backend directory and add the environment variables required by the application.
-
-Typical configuration values may include:
+Example placeholders:
 
 ```env
-PORT=3000
+PORT=5000
 MONGODB_URI=your_mongodb_connection_string
 REDIS_URL=your_redis_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-Add the actual media-storage, email, and other configuration keys required by your source code. The names above are examples and must match the variables read by your application.
+Add any additional variables required for authentication, email delivery, file storage, and other integrations.
 
-**Never commit real credentials, API keys, tokens, or production secrets to GitHub.**
-
-### 4. Start the Development Server
-
-Check the scripts in `Server/package.json`. If the project defines a `dev` script, run:
+Start the backend using the script configured in `Server/package.json`. For example:
 
 ```bash
 npm run dev
 ```
 
-Alternatively, if the entry file is `src/server.js` and Nodemon is installed:
+### 3. Set Up the Frontend
+
+Open a new terminal from the project root:
 
 ```bash
-npx nodemon src/server.js
+cd Client
+npm install
 ```
 
-The backend will start on the configured port, for example `http://localhost:3000`.
+Configure the frontend environment variables required by your application, including the backend API URL if applicable.
 
-## 🔌 API Capabilities
+Start the Vite development server:
 
-The messaging module includes endpoints for operations such as:
+```bash
+npm run dev
+```
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| POST | `/create-message/:channelId` | Create a message with optional attachments |
-| GET | `/get-all-message/:channelId` | Retrieve channel messages |
-| GET | `/get-all-channel-message/:channelId` | Retrieve messages for a channel |
-| PATCH | `/update-message/:messageId` | Update a message |
-| DELETE | `/delete-message/:messageId` | Delete a message |
+Open the local URL displayed in your terminal to access the application.
 
-These endpoints are defined in the messaging router and require authentication according to the current implementation. Confirm the API base prefix and exact route registration in the main server file before testing.
+## 💎 Nitro Subscription Model
 
-## 💎 Nitro Subscription Architecture
+Open-Talk includes a Nitro subscription-related model for managing subscription information.
 
-The Nitro module extends the application beyond basic messaging by introducing subscription-aware functionality.
+Depending on the implemented business logic, the subscription system can track:
 
-The subscription model can track:
-- The user associated with a subscription.
-- Subscription plan and status.
-- Start and expiration dates.
-- Whether a user's subscription is currently active.
+- Subscription plan
+- Subscription status, such as active, expired, or cancelled
+- Subscription start and expiration dates
+- User subscription information
+- Active subscription checks
 
-The messaging query can use this information to include premium status in author details.
+The backend can use this information to determine whether a user has access to subscription-based features.
 
-*Subscription payments, automatic renewals, and payment-provider integration should only be considered implemented if they exist in the current source code.*
+## 🔄 How It Works
 
-## 🚀 Deployment
+1. The user interacts with the React frontend.
+2. The frontend sends HTTP requests to the Express backend.
+3. The backend validates requests and applies application logic.
+4. MongoDB stores application data.
+5. Socket.IO supports real-time communication.
+6. File uploads are processed through the backend and configured storage service.
+7. Subscription information is used by the application wherever Nitro-related access rules are implemented.
 
-The backend can be prepared for deployment on a Node.js-compatible hosting platform.
+## 🔐 Security Notes
 
-A deployment generally requires:
+- Keep database credentials, API keys, and JWT secrets in environment variables.
+- Never commit `.env` files or sensitive credentials to GitHub.
+- Validate user input on the backend.
+- Protect private routes with appropriate authentication and authorization.
+- Configure CORS and production environment settings appropriately.
 
-1. Hosting the Node.js backend.
-2. Configuring a reachable MongoDB database.
-3. Configuring Redis if required.
-4. Setting environment variables securely.
-5. Configuring media storage credentials.
-6. Allowing the required frontend origin through CORS.
-7. Supporting WebSocket connections for Socket.IO.
-8. Configuring health checks, logging, and error monitoring.
+## 🧪 Testing
 
-Deployment is not confirmed by this README. The repository should be tested in the target hosting environment before being described as live or production-ready.
+Use Postman or another API testing tool to test backend endpoints. Test frontend workflows in the browser and verify real-time messaging, authentication, file uploads, and subscription behavior according to the features implemented.
 
-## 🔒 Security Considerations
+## 🚧 Future Improvements
 
-- Keep environment variables and credentials private.
-- Validate incoming API requests.
-- Verify user identity and permissions before modifying messages.
-- Restrict private channel access to authorized members.
-- Configure upload size and file-type restrictions.
-- Use HTTPS in deployed environments.
-- Add rate limiting, logging, and automated security tests before production use.
-
-## 📈 Project Level & Engineering Focus
-
-OPEN-TALK is a **feature-rich, intermediate-to-advanced backend portfolio project** because it brings together multiple backend concepts:
-
-- RESTful API design and modular code organization.
-- Database modeling and aggregation pipelines.
-- Authentication and authorization.
-- Real-time event-driven communication.
-- File uploads and external storage.
-- Redis integration.
-- Subscription-aware application logic.
-- Error handling and request validation.
-
-Its production readiness and scalability depend on testing, deployment configuration, monitoring, and security hardening.
-
-## 🎯 Learning Outcomes
-
-This project demonstrates practical experience with:
-
-- Backend development using Node.js and Express.js.
-- MongoDB and Mongoose.
-- Real-time systems using Socket.IO.
-- Authentication and middleware design.
-- File upload workflows.
-- Redis integration.
-- Subscription models and access control.
-- Building and organizing a multi-module backend.
+- Improve automated testing and API documentation.
+- Add stronger monitoring and error logging.
+- Improve deployment and production configuration.
+- Expand subscription-based features.
+- Optimize performance and scalability as needed.
 
 ## 👨‍💻 Author
 
@@ -279,9 +191,6 @@ This project demonstrates practical experience with:
 
 GitHub: [@shiv930](https://github.com/shiv930)
 
-Project Repository: [OPEN-TALK](https://github.com/shiv930/OPEN-TALK)
+## 📄 License
 
----
-
-⭐ If you find this project interesting, consider starring the repository and following its development.
-
+Choose and add a suitable open-source license before distributing the project under specific license terms.
