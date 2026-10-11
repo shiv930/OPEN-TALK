@@ -1,0 +1,67 @@
+:root,
+html.light {
+  --bg-primary: #F5F5F5;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #ECEFEF;
+  --surface-glass-1: rgba(255, 255, 255, 0.78);
+  --surface-glass-2: rgba(255, 255, 255, 0.9);
+  --surface-glass-3: #FFFFFF;
+  --surface-hover: #F0F4F3;
+  --surface-active: #E7F3F2;
+  --border-subtle: rgba(44, 44, 44, 0.08);
+  --border-medium: rgba(44, 44, 44, 0.14);
+  --border-highlight: rgba(76, 184, 184, 0.48);
+  --text-primary: #333333;
+  --text-secondary: #5B6262;
+  --text-muted: #747D7D;
+  --accent-cyan: #4CB8B8;
+  --accent-cyan-strong: #287F80;
+  --accent-cyan-glow: rgba(76, 184, 184, 0.2);
+  --accent-violet: #D78376;
+  --accent-violet-glow: rgba(215, 131, 118, 0.18);
+  --accent-emerald: #368C73;
+  --accent-emerald-glow: rgba(54, 140, 115, 0.16);
+  --status-online: #368C73;
+  --status-idle: #B97922;
+  --status-dnd: #C8544B;
+  --status-offline: #879090;
+  --shadow-floating: 0 12px 32px -12px rgba(44, 44, 44, 0.2), 0 1px 2px rgba(44, 44, 44, 0.06);
+  --shadow-dock: 0 18px 44px -16px rgba(44, 44, 44, 0.24), 0 1px 2px rgba(44, 44, 44, 0.08);
+  --shadow-glow-cyan: 0 0 24px -6px rgba(76, 184, 184, 0.28);
+  --shadow-glow-violet: 0 0 24px -6px rgba(215, 131, 118, 0.2);
+  --shadow-modal: 0 24px 60px -20px rgba(44, 44, 44, 0.32);
+  --backdrop-blur: blur(20px);
+}
+
+html.dark {
+  --bg-primary: #07090E;
+  --bg-secondary: #0F121A;
+  --bg-tertiary: #151A26;
+  --surface-glass-1: rgba(255, 255, 255, 0.03);
+  --surface-glass-2: rgba(255, 255, 255, 0.05);
+  --surface-glass-3: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --surface-active: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.1);
+  --border-highlight: rgba(6, 182, 212, 0.35);
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --accent-cyan: #06B6D4;
+  --accent-cyan-strong: #06B6D4;
+  --accent-cyan-glow: rgba(6, 182, 212, 0.25);
+  --accent-violet: #8B5CF6;
+  --accent-violet-glow: rgba(139, 92, 246, 0.25);
+  --accent-emerald: #10B981;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+  --status-online: #10B981;
+  --status-idle: #F59E0B;
+  --status-dnd: #EF4444;
+  --status-offline: #64748B;
+  --shadow-floating: 0 16px 48px -8px rgba(0, 0, 0, 0.65), 0 0 2px 1px rgba(255, 255, 255, 0.05);
+  --shadow-dock: 0 24px 64px -12px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(255, 255, 255, 0.08);
+  --shadow-glow-cyan: 0 0 30px -5px rgba(6, 182, 212, 0.3);
+  --shadow-glow-violet: 0 0 30px -5px rgba(139, 92, 246, 0.3);
+  --shadow-modal: 0 25px 70px -10px rgba(0, 0, 0, 0.75);
+}

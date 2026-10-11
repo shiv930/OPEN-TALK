@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+Client/.git-backup/
+Client/node_modules/
+Client/dist/
+Client/.env
+Client/.env.*
+!Client/.env.example
