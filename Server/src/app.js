@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-
+import cors from "cors";
 import http from "http";
 import express from "express";
 import cookieparser from "cookie-parser";
@@ -18,6 +18,16 @@ import errorMiddleware from "./middleware/error.middleware.js";
 import paymentRoutes from "../src/routes/payment.routes.js";
 
 const app = express(); // app ko Express instance ke liye use kar
+
+app.use(
+  cors({
+    origin: [
+      process.env.CLIENT_URL,
+      "http://localhost:5173",
+    ].filter(Boolean),
+    credentials: true,
+  })
+);
 const server = http.createServer(app); //  HTTP server (server) → tumhare app ko run karta hai aur socket.io ke liye base provide karta hai.
 initSocket(server);
 
@@ -25,6 +35,7 @@ app.use(passport.initialize());
 app.use(express.json());
 app.use(cookieparser());
 app.use(express.urlencoded({ extended: true }));
+
 
 passport.use(
   new GoogleStrategy(
