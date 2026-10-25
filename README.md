@@ -145,6 +145,7 @@ Open the local URL displayed in your terminal to access the application.
 
 - In Render, use `Server` as the service root directory and `npm start` as the start command.
 - Set the Render `CLIENT_URL` environment variable to `https://open-talk-rose.vercel.app` (no trailing slash). The API also allows this production origin by default.
+- Configure Redis with either `REDIS_URL` (use `rediss://` when the provider requires TLS) or `REDIS_HOST`, `REDIS_PORT`, and `REDIS_PASSWORD`; set `REDIS_TLS=true` for TLS when using separate host/port variables. Confirm the Redis provider allows connections from the Render service.
 - In Vercel, set `VITE_API_URL` to `https://open-talk-9v3h.onrender.com`. Set `VITE_SOCKET_URL` to the same URL only if you want to override the default.
 - Vite environment variables are embedded during the build, so redeploy the Vercel frontend after changing them. Redeploy the Render backend after changing its environment variables.
 
