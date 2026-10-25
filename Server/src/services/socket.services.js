@@ -5,15 +5,13 @@ import channelModel from '../models/channel.model.js';
 import serverModel from '../models/server.model.js';
 import serverMemberModel from '../models/serverMember.model.js';
 import mongoose from 'mongoose';
+import { corsOptions } from '../config/cors.js';
 
 
 let io;  // socket.io ka instance store kar raha hu 
-export const initSocket = (server)=>{    //ye function tumhare HTTP server ko socket.io ke saath bind kar raha hai.
+export const initSocket = (server, cors = corsOptions)=>{    //ye function tumhare HTTP server ko socket.io ke saath bind kar raha hai.
      io= new Server(server,{   //socket.io ko HTTP server ke upar mount karta hai.
-        // cors:{
-        //     origin:"http://localhost:5173",
-        //     methods:['GET', 'POST']
-        // }
+        cors,
     });
 
     io.use(socketAuthMiddleware)

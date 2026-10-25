@@ -1,6 +1,7 @@
 import { io } from 'socket.io-client';
+import { API_BASE_URL } from '../api/config';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || window.location.origin;
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || API_BASE_URL;
 
 let socket = null;
 

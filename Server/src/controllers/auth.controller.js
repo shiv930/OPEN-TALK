@@ -8,6 +8,13 @@ import { generateOtp } from "../utils/otp.js";
 import sendEmail from "../services/email.service.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
+import { DEFAULT_CLIENT_URL } from "../config/cors.js";
+
+const getAuthCookieOptions = (req) => ({
+  httpOnly: true,
+  secure: req.secure,
+  sameSite: req.secure ? "none" : "lax",
+});
 
 export const registerUser = async (req, res, next) => {
   try {
@@ -38,17 +45,13 @@ export const registerUser = async (req, res, next) => {
     const refreshToken = generateToken(user._id, "2d");
 
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
+      ...getAuthCookieOptions(req),
       maxAge: 15 * 60 * 1000,
-      secure: true,
-      sameSite: "strict",
     });
 
     res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
+      ...getAuthCookieOptions(req),
       maxAge: 2 * 24 * 60 * 60 * 1000,
-      secure: true,
-      sameSite: "strict",
     });
 
     return res
@@ -82,17 +85,13 @@ export const loginController = async (req, res, next) => {
     const refreshToken = generateToken(user._id, "2d");
 
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
+      ...getAuthCookieOptions(req),
       maxAge: 15 * 60 * 1000,
-      secure: true,
-      sameSite: "strict",
     });
 
     res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
+      ...getAuthCookieOptions(req),
       maxAge: 2 * 24 * 60 * 60 * 1000,
-      secure: true,
-      sameSite: "strict",
     });
     let userData = user.toObject();
     delete userData.password;
@@ -126,15 +125,22 @@ export const googleAuth = async (req, res, next) => {
     const refreshToken = generateToken(user._id, "2d");
 
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
+      ...getAuthCookieOptions(req),
       maxAge: 15 * 60 * 1000,
     });
     res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
+      ...getAuthCookieOptions(req),
       maxAge: 2 * 24 * 60 * 60 * 1000,
     });
 
-    const clientUrl = (process.env.CLIENT_URL || process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
+    const clientUrl = (
+      process.env.CLIENT_URL ||
+      process.env.FRONTEND_URL ||
+      DEFAULT_CLIENT_URL
+    )
+      .split(",")[0]
+      .trim()
+      .replace(/\/+$/, "");
     return res.redirect(`${clientUrl}/auth/google/callback`);
   } catch (error) {
     next(error);
@@ -151,8 +157,9 @@ export const logoutController = async (req, res, next) => {
     if (refreshToken) {
       await redis.set(`bearer: refreshToken:${refreshToken}`, "true");
     }
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
+    const cookieOptions = getAuthCookieOptions(req);
+    res.clearCookie("accessToken", cookieOptions);
+    res.clearCookie("refreshToken", cookieOptions);
     return res
       .status(200)
       .json(new ApiResponse(200, "User logout successfully"));
@@ -486,10 +493,8 @@ export const regenratedAccessToken = async (req, res, next) => {
     const newAccessToken = generateToken(decoded.id, "15min");
 
     res.cookie("accessToken", newAccessToken, {
-      httpOnly: true,
+      ...getAuthCookieOptions(req),
       maxAge: 15 * 60 * 1000,
-      secure: false,
-      sameSite: "strict",
     });
 
     return res

@@ -1,9 +1,7 @@
-import dotenv from "dotenv";
-dotenv.config();
-import cors from "cors";
 import http from "http";
 import express from "express";
 import cookieparser from "cookie-parser";
+import corsMiddleware, { corsOptions } from "./config/cors.js";
 import authRoutes from "./routes/auth.routes.js";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
@@ -19,17 +17,10 @@ import paymentRoutes from "../src/routes/payment.routes.js";
 
 const app = express(); // app ko Express instance ke liye use kar
 
-app.use(
-  cors({
-    origin: [
-      process.env.CLIENT_URL,
-      "http://localhost:5173",
-    ].filter(Boolean),
-    credentials: true,
-  })
-);
+app.set("trust proxy", 1);
+app.use(corsMiddleware);
 const server = http.createServer(app); //  HTTP server (server) → tumhare app ko run karta hai aur socket.io ke liye base provide karta hai.
-initSocket(server);
+initSocket(server, corsOptions);
 
 app.use(passport.initialize());
 app.use(express.json());

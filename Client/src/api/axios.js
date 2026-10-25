@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || 'https://open-talk-9v3h.onrender.com';
+import { API_BASE_URL } from './config';
 
 const REFRESH_URL = '/api/auth/regenrate-access-token';
 

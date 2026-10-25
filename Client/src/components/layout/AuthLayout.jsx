@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Chrome, MessageCircle, Radio, ShieldCheck, Users } from 'lucide-react';
 import CosmicAtmosphere from './CosmicAtmosphere';
 import ThemeToggle from '../navigation/ThemeToggle';
+import { API_BASE_URL } from '../../api/config';
 
 export default function AuthLayout({ title, subtitle, footer, children }) {
   const startGoogleLogin = () => {
-    const apiUrl = import.meta.env.VITE_API_URL || '';
-    window.location.assign(`${apiUrl}/api/auth/google`);
+    window.location.assign(`${API_BASE_URL}/api/auth/google`);
   };
 
   return (
